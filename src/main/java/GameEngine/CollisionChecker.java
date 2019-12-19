@@ -87,16 +87,20 @@ public class CollisionChecker {
 
         double min = dotProduct(axis, shape.get(0));
         double max = min;
+        double minVerticeIndex = 0;
+        double maxVerticeIndex = 0;
         for (int i = 1; i < shape.size(); i++) {
             // NOTE: the axis must be normalized to get accurate projections
             double p = dotProduct(axis, shape.get(i));
             if (p < min) {
                 min = p;
+                minVerticeIndex = i;
             } else if (p > max) {
                 max = p;
+                maxVerticeIndex = i;
             }
         }
-        double[] proj = new double[]{min, max};
+        double[] proj = new double[]{min, max, minVerticeIndex, maxVerticeIndex};
 
         return proj;
 
@@ -166,6 +170,21 @@ public class CollisionChecker {
         return overlap;
     }
 
+    /**
+     * Gets overlapping vertice's index from the projection2.
+     *
+     * @param projection1 the projection 1
+     * @param projection2 the projection 2
+     * @return vertice index int;
+     */
+    static int getOverlappingVerticeIndex(double[] projection1, double[] projection2){
+        if(projection1[0]<projection2[0]){
+            return (int) projection2[2];
+        }else {
+            return (int) projection2[3];
+        }
+    }
+
 
     /**
      * Checks collision of two polygons.
@@ -174,11 +193,16 @@ public class CollisionChecker {
      * @param poly2 the polygon 2
      * @return the boolean indicating are polygons colliding
      */
-    public static MTV checkCollision(Polygon poly1, Polygon poly2){
+    public static CollisionInfo checkCollision(Polygon poly1, Polygon poly2){
 
         
         //needed  for overlap depth returning later
         double overlap = 10000000;
+        double[] projectionOfAxisShape = null;
+        double[] projectionCollPoint = null;
+        boolean projectionAxisIsFrom1 = true;
+
+
 
         //gets points from te tested polygons in workable lists
         LinkedList<Point2D> vertices1 = pointsFromPolygon(poly1);
@@ -219,6 +243,15 @@ public class CollisionChecker {
                     // then set this one as the smallest
                     overlap = o;
                     smallest = axis;
+                    if(n==0){
+                        projectionOfAxisShape=projection1;
+                        projectionCollPoint=projection2;
+                        projectionAxisIsFrom1 = true;
+                    }else {
+                        projectionOfAxisShape=projection2;
+                        projectionCollPoint=projection1;
+                        projectionAxisIsFrom1 = false;
+                    }
 
                 }
 
@@ -228,11 +261,19 @@ public class CollisionChecker {
             }
         }
 
+        Point2D collisionPoint;
+        int index = getOverlappingVerticeIndex(projectionOfAxisShape, projectionCollPoint);
+        if(projectionAxisIsFrom1){
+            collisionPoint = vertices2.get(index);
+        }else {
+            collisionPoint = vertices1.get(index);
+        }
 
-        MTV mtv = new MTV(overlap, smallest);
+
+        CollisionInfo colInfo = new CollisionInfo(overlap, smallest, collisionPoint);
 
 
-        return mtv;
+        return colInfo;
     }
 
 

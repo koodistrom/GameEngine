@@ -8,6 +8,15 @@
   <component name="ChangeListManager">
     <list default="true" id="062bd38e-b06c-480f-8b34-fe210acb3c9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ExampleGame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExampleGame/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameEngine/Body.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameEngine/Body.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameEngine/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameEngine/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameEngine/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameEngine/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameEngine/MTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameEngine/CollisionInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameEngine/PhysicsWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameEngine/PhysicsWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ExampleGame/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ExampleGame/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GameEngine/CollisionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameEngine/CollisionChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GameEngine/MTV.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +46,7 @@
   <component name="ProjectId" id="1TZDwomYkOyTNbaO7EnDPufu5Zz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -93,7 +103,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

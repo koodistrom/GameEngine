@@ -65,6 +65,7 @@ public class App extends GameWindow {
         //go.getBody().getShapes().get(0).setRotate(go.getBody().getShapes().get(0).getRotate()+1);
         System.out.println(CollisionChecker.checkCollision((Polygon)go.getBody().getShapes().get(0),(Polygon) car.getBody().getShapes().get(0)) );
 
+
     }
 
     public void setKeyListeners(){

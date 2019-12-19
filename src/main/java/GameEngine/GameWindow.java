@@ -68,7 +68,7 @@ public class GameWindow extends Application {
             public void handle(long now) {
                 deltaTime = (now-time)/ 1000000000.0;
                 time = now;
-                getWorld().updateBodies();
+                getWorld().updateWorld();
                 gameLoop(now);
             }
         };

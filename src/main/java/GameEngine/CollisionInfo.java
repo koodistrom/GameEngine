@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 /**
  * Minimum transaltion vector. Holds information of the length of the overlap and the axis the overlap is happening.
  */
-public class MTV {
+public class CollisionInfo {
     /**
      * The Overlap.
      */
@@ -16,14 +16,21 @@ public class MTV {
     Point2D axis;
 
     /**
+     * Approximation of the location where two bodies are touching.
+     */
+    Point2D collisionPoint;
+
+    /**
      * Instantiates a new Mtv.
      *
-     * @param overlap the overlap
-     * @param axis    the axis
+     * @param overlap        the overlap
+     * @param axis           the axis
+     * @param collisionPoint the collision point
      */
-    public MTV(double overlap, Point2D axis){
+    public CollisionInfo(double overlap, Point2D axis, Point2D collisionPoint){
         this.overlap = overlap;
         this.axis = axis;
+        this.collisionPoint = collisionPoint;
     }
 
     /**
@@ -62,11 +69,30 @@ public class MTV {
         this.axis = axis;
     }
 
+    /**
+     * Gets collision point.
+     *
+     * @return the collision point
+     */
+    public Point2D getCollisionPoint() {
+        return collisionPoint;
+    }
+
+    /**
+     * Sets collision point.
+     *
+     * @param collisionPoint the collision point
+     */
+    public void setCollisionPoint(Point2D collisionPoint) {
+        this.collisionPoint = collisionPoint;
+    }
+
     @Override
     public String toString() {
-        return "MTV{" +
+        return "CollisionInfo{" +
                 "overlap=" + overlap +
                 ", axis=" + axis +
+                ", collision point=" + collisionPoint +
                 '}';
     }
 }

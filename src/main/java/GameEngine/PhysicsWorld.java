@@ -1,7 +1,9 @@
 package GameEngine;
 
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Polygon;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -21,6 +23,7 @@ public class PhysicsWorld {
      * The Bodies included in this world.
      */
     LinkedList<Body> bodies;
+
 
     /**
      * Instantiates a new Physics world.
@@ -44,11 +47,50 @@ public class PhysicsWorld {
         });
     }
 
+
+
+    public void solveCollision(Body body1, Body body2){
+
+        body1.setLinearVelocity(calculateVelocitityAfterCollision(body1, body2));
+        body2.setLinearVelocity(calculateVelocitityAfterCollision(body2, body1).multiply(-1));
+
+
+    }
+
+    public Point2D calculateVelocitityAfterCollision(Body body1, Body body2){
+        double a = (body2.getMass()*2)/(body2.getMass()+body1.getMass());
+        double b = (body1.getLinearVelocity().subtract(body2.getLinearVelocity()).dotProduct(body1.getCentroid().subtract(body2.getCentroid())))/
+                (Math.pow(body1.getCentroid().subtract(body2.getCentroid()).magnitude(),2));
+        Point2D c = body1.getCentroid().subtract(body2.getCentroid());
+        Point2D newVelocity = c.multiply(a).multiply(b);
+        return newVelocity;
+
+    }
+
+
+    public void updateWorld(){
+        for(int i=0; i<getBodies().size(); i++){
+            LinkedList<Body> collisionsNow = new LinkedList<>();
+            for(int n = i+1; n<getBodies().size(); n++)
+            if(CollisionChecker.checkCollision((Polygon)getBodies().get(i).getShapes().get(0),(Polygon) getBodies().get(n).getShapes().get(0))!=null){
+                if(!getBodies().get(i).getInCollisionWith().contains(getBodies().get(n))){
+                    solveCollision(getBodies().get(i), getBodies().get(n));
+                }
+                collisionsNow.add(getBodies().get(n));
+
+            }
+            getBodies().get(i).setInCollisionWith(collisionsNow);
+        }
+
+        updateBodies();
+    }
+
     /**
      * Gets pixels per meter.
      *
      * @return the pixels per meter
      */
+
     public double getPixelsPerMeter() {
         return pixelsPerMeter;
     }

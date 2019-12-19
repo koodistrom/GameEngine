@@ -9,6 +9,7 @@ import javafx.scene.shape.Shape;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Body holds information about physical properties of a game object
@@ -71,6 +72,11 @@ public class Body {
     double angle;
 
     /**
+     * List of bodies this body is currently colliding
+     */
+    LinkedList<Body> inCollisionWith;
+
+    /**
      * Instantiates a new Body.
      *
      * @param x    the x coordinate
@@ -104,6 +110,7 @@ public class Body {
         this.host = host;
         shapes = new ArrayList<Shape>();
         torque = 0;
+        inCollisionWith = new LinkedList<Body>();
 
         double scaler = height/img.getHeight();
         Shape s = ShapeCreator.hullShapeFromImg(img, scaler);
@@ -260,5 +267,185 @@ public class Body {
      */
     public void setTorque(double torque) {
         this.torque = torque;
+    }
+
+    /**
+     * Gets host.
+     *
+     * @return the host
+     */
+    public GameObject getHost() {
+        return host;
+    }
+
+    /**
+     * Sets host.
+     *
+     * @param host the host
+     */
+    public void setHost(GameObject host) {
+        this.host = host;
+    }
+
+    /**
+     * Gets linear velocity.
+     *
+     * @return the linear velocity
+     */
+    public Point2D getLinearVelocity() {
+        return linearVelocity;
+    }
+
+    /**
+     * Sets linear velocity.
+     *
+     * @param linearVelocity the linear velocity
+     */
+    public void setLinearVelocity(Point2D linearVelocity) {
+        this.linearVelocity = linearVelocity;
+    }
+
+    /**
+     * Gets angular velocity.
+     *
+     * @return the angular velocity
+     */
+    public double getAngularVelocity() {
+        return angularVelocity;
+    }
+
+    /**
+     * Sets angular velocity.
+     *
+     * @param angularVelocity the angular velocity
+     */
+    public void setAngularVelocity(double angularVelocity) {
+        this.angularVelocity = angularVelocity;
+    }
+
+    /**
+     * Gets density.
+     *
+     * @return the density
+     */
+    public double getDensity() {
+        return density;
+    }
+
+    /**
+     * Sets density.
+     *
+     * @param density the density
+     */
+    public void setDensity(double density) {
+        this.density = density;
+    }
+
+    /**
+     * Gets pixels per meter.
+     *
+     * @return the pixels per meter
+     */
+    public double getPixelsPerMeter() {
+        return pixelsPerMeter;
+    }
+
+    /**
+     * Sets pixels per meter.
+     *
+     * @param pixelsPerMeter the pixels per meter
+     */
+    public void setPixelsPerMeter(double pixelsPerMeter) {
+        this.pixelsPerMeter = pixelsPerMeter;
+    }
+
+    /**
+     * Gets world.
+     *
+     * @return the world
+     */
+    public PhysicsWorld getWorld() {
+        return world;
+    }
+
+    /**
+     * Sets world.
+     *
+     * @param world the world
+     */
+    public void setWorld(PhysicsWorld world) {
+        this.world = world;
+    }
+
+    /**
+     * Gets centroid.
+     *
+     * @return the centroid
+     */
+    public Point2D getCentroid() {
+        return centroid;
+    }
+
+    /**
+     * Sets centroid.
+     *
+     * @param centroid the centroid
+     */
+    public void setCentroid(Point2D centroid) {
+        this.centroid = centroid;
+    }
+
+    /**
+     * Gets mmoi.
+     *
+     * @return the mmoi
+     */
+    public double getMmoi() {
+        return mmoi;
+    }
+
+    /**
+     * Sets mmoi.
+     *
+     * @param mmoi the mmoi
+     */
+    public void setMmoi(double mmoi) {
+        this.mmoi = mmoi;
+    }
+
+    /**
+     * Gets angle.
+     *
+     * @return the angle
+     */
+    public double getAngle() {
+        return angle;
+    }
+
+    /**
+     * Sets angle.
+     *
+     * @param angle the angle
+     */
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+
+    /**
+     * Gets in collision with.
+     *
+     * @return the in collision with
+     */
+    public LinkedList<Body> getInCollisionWith() {
+        return inCollisionWith;
+    }
+
+    /**
+     * Sets in collision with.
+     *
+     * @param inCollisionWith the in collision with
+     */
+    public void setInCollisionWith(LinkedList<Body> inCollisionWith) {
+        this.inCollisionWith = inCollisionWith;
     }
 }
